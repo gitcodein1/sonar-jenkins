@@ -2,6 +2,9 @@ pipeline{
     agent {
         label 'node3'
     }
+    tools {
+        maven 'mvndocker'
+    }
         
     stages{
         stage("QG CHECK") {
