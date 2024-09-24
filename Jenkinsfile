@@ -20,9 +20,9 @@ pipeline{
 			// }
    //                  }
 		    timeout(time: 1, unit: 'HOURS') {
-			def qg = waitForQualityGate()
-			if (qg.status != 'OK') {
-				error "Pipeline aborted due to quality gate failure: ${qg.status}"
+			def quality_gate = waitForQualityGate()
+			if (quality_gate.status != 'OK') {
+				error "${quality_gate.status} in the Pipeline, Doesn't meet criteria"
 			}
                     }
                 }
