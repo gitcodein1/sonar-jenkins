@@ -13,12 +13,12 @@ pipeline{
                     withSonarQubeEnv('sonarscanner') {
                         sh 'mvn clean sonar:sonar'
                     }
-   //                  timeout(time: 1, unit: 'HOURS') {
-		 //    	def qg = waitForQualityGate()
-		 //        if (qg.status != 'OK') {
-			// 	error "Pipeline aborted due to quality gate failure: ${qg.status}"
-			// }
-   //                  }
+                    timeout(time: 1, unit: 'HOURS') {
+		    	def quality_gate = waitForQualityGate()
+		        if (quality_gate.status != 'OK') {
+				error "Pipeline Failed due to quality gate failure: ${qg.status}"
+			}
+                    }
                 }
             }
         }
